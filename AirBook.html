@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="amh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Page</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
+    .container { width: 90%; max-width: 1200px; margin: 20px auto; display: flex; gap: 20px; }
+    .property-info, .booking-form { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .property-info { flex: 2; }
+    .booking-form { flex: 1; height: fit-content; display: flex; position: sticky; }
+    h2 { margin-top: 0; }
+    label { display: block; margin: 10px 0 5px; }
+    input, select { width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    button { width: 100%; padding: 12px; background: #FF5A5F; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+    button:hover { background: #e04e52; }
+    .price-summary { margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="property-info">
+        <img src="house11.webp" alt="Property Image" style="width:100%; border-radius:10px;">
+        <h2>HU APPARTMENT HAWASSA</h2>
+        <p>⭐⭐⭐⭐☆ 4.8 · tecno campus, Hawassa</p>
+        <p>Experience a modern apartment with all amenities in the heart of the city.</p>
+    </div>
+
+    <div class="booking-form">
+        <h2>Book Your Stay</h2>
+        <form>
+            <label for="checkin">Confirm Check-in Date</label>
+            <input type="date" id="checkin" name="checkin">
+
+            <label for="checkout">Confirm Check-out Date</label>
+            <input type="date" id="checkout" name="checkout">
+
+            <label for="guests">Confirm Guests</label>
+            <select id="guests" name="guests">
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+            </select>
+
+            <div class="price-summary">
+                <p>Price per night: 150</p>
+                <p>Total: $150</p>
+            </div>
+
+            <button type="button" onclick="calculateTotal()">Reserve</button>
+        </form>
+    </div>
+
+</div>
+<footer style="background-color:#f7f7f7; text-align:center; padding:20px; border-top:1px solid #ccc;">
+        &copy; 2018E.C Airbnb frontend | All rights reserved
+    </footer>
+<script>
+    function calculateTotal() {
+        const checkinDate = new Date(document.getElementById('checkin').value);
+        const checkoutDate = new Date(document.getElementById('checkout').value);
+        const guests = parseInt(document.getElementById('guests').value);
+        const pricePerNight = 150; // Updated price per night to $150
+
+        if (!isNaN(checkinDate) && !isNaN(checkoutDate) && guests > 0) {
+            const timeDifference = checkoutDate - checkinDate; // difference in milliseconds
+            const nightCount = timeDifference / (1000 * 3600 * 24); // convert milliseconds to days
+            
+            if (nightCount <= 0) {
+                alert('Check-out date must be after check-in date.');
+                return;
+            }
+
+            const totalPrice = nightCount * pricePerNight * guests; // Calculate total
+
+            // Update total in the price summary
+            document.querySelector('.price-summary p:last-child').innerText = 'Total: $' + totalPrice.toFixed(2);
+        } else {
+            alert('Please enter valid dates and select the number of guests.');
+        }
+    }
+</script>
+</body>
+</html>
