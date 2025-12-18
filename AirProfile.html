@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="AirProfile.css">
+</head>
+<body>
+
+<header>
+    <div class="navbar">
+        <a href="AirHome.html" class="logo">Airbnb</a>
+    </div>
+
+    <div class="profile-header">
+        <img id="displayImg" alt="Profile picture">
+        <h1>Chernet Tesema</h1>
+        <p class="bio">Travel enthusiast & home lover</p>
+        <a class="edit-btn" href="AirEditPro.html" style="text-decoration: none; color: black;">Edit Profile</a>
+    
+</div>
+
+</div>
+</header>
+
+<section class="main-section">
+
+    <div class="stats">
+        <div>
+            <strong>Bookings</strong>
+            <p>12</p>
+        </div>
+        <div>
+            <strong>Saved</strong>
+            <p>5</p>
+        </div>
+        <div>
+            <strong>Status</strong>
+            <p>Verified</p>
+        </div>
+    </div>
+
+    <div class="reviews">
+        <h2>Reviews</h2>
+        <div class="review">
+            <strong>Property ABC</strong> - 5⭐️<br>
+            "Amazing stay!"
+        </div>
+
+        <div class="review">
+            <strong>Property XYZ</strong> - 4⭐️<br>
+            "Very cozy and clean."
+        </div>
+    </div>
+
+    <div class="bookings">
+        <h2>Bookings</h2>
+        <div class="booking">
+            <strong>Beach House</strong> | Mar 1 - Mar 5
+        </div>
+        <div class="booking">
+            <strong>Mountain Cabin</strong> | Apr 10 - Apr 15
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    &copy; 2018E.C Airbnb frontend | All rights reserved
+</footer>
+
+</body>
+</html>
+
+<script>
+    const savedImage = localStorage.getItem("uploadedImage");
+
+    if (savedImage) {
+        document.getElementById("displayImg").src = savedImage;
+    } else {
+        document.getElementById("displayImg").alt = "No image uploaded";
+    }
+</script>
